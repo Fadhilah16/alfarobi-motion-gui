@@ -134,96 +134,77 @@
         let x_move = Number($('#x_move').val());
         let y_move = Number($('#y_move').val());
         let z_move = Number($('#z_move').val());
+        let walking_params = new ROSLIB.Message({
 
-        // walking_param_.freq = 1.64999997616;
-        // walking_param_.doubleSupportRatio =  0.0450000017881;
-        // walking_param_.footDistance =  0.129999995232;
-        // walking_param_.footRise =  0.0450000017881;
-        // walking_param_.footPutDownZOffset= 0.0;
-        // walking_param_.footPutDownPhase= 1.0;
-        // walking_param_.footApexPhase= 0.5;
-        // walking_param_.footOvershootRatio= 0.0500000007451;
-        // walking_param_.footOvershootPhase= 0.850000023842;
-        // walking_param_.trunkHeight= 0.375;
-        // walking_param_.trunkPitch= 0.209439516068;
-        // walking_param_.trunkPhase= 0.600000023842;
-        // walking_param_.trunkXOffset= 0.00999999977648;
-        // walking_param_.trunkYOffset= 0.0;
-        // walking_param_.trunkSwing= 0.300000011921;
-        // walking_param_.trunkPause= 0.5;
-        // walking_param_.trunkXOffsetPCoefForward= 0.5;
-        // walking_param_.trunkXOffsetPCoefTurn= 0.0;
-        // walking_param_.trunkPitchPCoefForward= 0.0;
-        // walking_param_.trunkPitchPCoefTurn= 0.0;
-        // walking_param_.trunkYOnlyInDoubleSupport= false;
-        // walking_param_.mode= '';
-        // walking_param_.tuning= false;
-        // walking_param_.D_ANKLE_P_qw= 0.0;
-        // walking_param_.D_KNEE_qw= 0.0;
-        // walking_param_.D_HIP_P_qw= 0.0;
-        // walking_param_.KP_P_qw= 0.0;
-        // walking_param_.KD_P_qw= 0.0;
-        // walking_param_.KI_P_qw= 0.0;
-        // walking_param_.ShoulderGain_qw= 0.0;
-        // walking_param_.setpointPitch= 1.0;
-        // walking_param_.pitch_error_tol= 0.0;
-        // walking_param_.KP_X_qw= 0.0;
-        // walking_param_.KD_X_qw= 0.0;
-        // walking_param_.KI_X_qw= 0.0;
-        // walking_param_.Angle_0= 9.0;
-        // walking_param_.Angle_1= 7.0;
-        // walking_param_.Angle_2= 3.0;
-        // walking_param_.Angle_3= 8.0;
-        // walking_param_.Angle_4= 10.0;
-        // walking_param_.KD_0= 0.230000004172;
-        // walking_param_.KD_1= 0.180000007153;
-        // walking_param_.KD_2= 0.0;
-        // walking_param_.KD_3= 0.189999997616;
-        // walking_param_.KD_4= 0.239999994636;
-        // walking_param_.Gyro_0= 80.0;
-        // walking_param_.Gyro_1= 40.0;
-        // walking_param_.Gyro_2= 0.0;
-        // walking_param_.Gyro_3= 40.0;
-        // walking_param_.Gyro_4= 80.0;
-        // walking_param_.KP_0= 0.300000011921;
-        // walking_param_.KP_1= 0.20000000298;
-        // walking_param_.KP_2= 0.0;
-        // walking_param_.KP_3= 0.10000000149;
-        // walking_param_.KP_4= 0.300000011921;
-        walking_param_.XMove = x_move;
-        walking_param_.YMove = y_move;
-        walking_param_.ZMove = z_move;
-        // console.log(walking_param_);
-        // let walking_params = new ROSLIB.Message({
-
-        //       walking_param_,
+          freq: 1.64999997616,
+          doubleSupportRatio: 0.0450000017881,
+          footDistance: 0.129999995232,
+          footRise: 0.0450000017881,
+          footPutDownZOffset: 0.0,
+          footPutDownPhase: 1.0,
+          footApexPhase: 0.5,
+          footOvershootRatio: 0.0500000007451,
+          footOvershootPhase: 0.850000023842,
+          trunkHeight: 0.375,
+          trunkPitch: 0.209439516068,
+          trunkPhase: 0.600000023842,
+          trunkXOffset: 0.00999999977648,
+          trunkYOffset: 0.0,
+          trunkSwing: 0.300000011921,
+          trunkPause: 0.5,
+          trunkXOffsetPCoefForward: 0.5,
+          trunkXOffsetPCoefTurn: 0.0,
+          trunkPitchPCoefForward: 0.0,
+          trunkPitchPCoefTurn: 0.0,
+          trunkYOnlyInDoubleSupport: false,
+          XMove: x_move,
+          YMove: y_move,
+          ZMove: z_move,
+          mode: '',
+          tuning: false,
+          D_ANKLE_P_qw: 0.0,
+          D_KNEE_qw: 0.0,
+          D_HIP_P_qw: 0.0,
+          KP_P_qw: 0.0,
+          KD_P_qw: 0.0,
+          KI_P_qw: 0.0,
+          ShoulderGain_qw: 0.0,
+          setpointPitch: 1.0,
+          pitch_error_tol: 0.0,
+          KP_X_qw: 0.0,
+          KD_X_qw: 0.0,
+          KI_X_qw: 0.0,
+          Angle_0: 9.0,
+          Angle_1: 7.0,
+          Angle_2: 3.0,
+          Angle_3: 8.0,
+          Angle_4: 10.0,
+          KD_0: 0.230000004172,
+          KD_1: 0.180000007153,
+          KD_2: 0.0,
+          KD_3: 0.189999997616,
+          KD_4: 0.239999994636,
+          Gyro_0: 80.0,
+          Gyro_1: 40.0,
+          Gyro_2: 0.0,
+          Gyro_3: 40.0,
+          Gyro_4: 80.0,
+          KP_0: 0.300000011921,
+          KP_1: 0.20000000298,
+          KP_2: 0.0,
+          KP_3: 0.10000000149,
+          KP_4: 0.300000011921,
                     
-            // });
-          // console.log(walking_params)
-        // walking_param_.set({
-        //   XMove :x_move,
-        //   YMove :y_move,
-        //   ZMove :z_move,
-        // })
-        
-        // console.log(walking_param_)
-        
-        
-        // walking_param_.get(function(val){
-        //   val.XMove = x_move;
-        //   val.YMove = y_move;
-        //   val.ZMove = z_move;
-        //   console.log(val)
-        // });
+            });
       
 
         let walking_msg = new ROSLIB.Message({
                 data: "start",
             });
 
-            console.log(walking_param_)
+            console.log(walking_params)
             console.log(walking_msg)
-        set_walking_param.publish(walking_param_);
+        set_walking_param.publish(walking_params);
         set_walking_command.publish(walking_msg);
       }
 
