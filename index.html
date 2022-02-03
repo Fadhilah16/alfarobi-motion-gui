@@ -22,27 +22,6 @@
   </head>
 
   <body>
-    <!-- <h2><strong>Generasi GIGIH 2.0 by YABB & GoTo</strong></h2>
-<br>
-<br>
-<h3><strong>Posisi : Data Analyst Path </strong></h3>
-<p>Perjalananmu akan terdiri dari program daring (full online) selama 6 bulan yang akan dimulai dari proses onboarding, proses belajar, hingga lanjut ke tahap akhir di mana kamu akan mempraktikkan ilmu yang sudah kamu dapat, baik melalui  capstone project ataupun magang di mitra industri YABB sebagai software engineer dan data analyst. Semua peserta mendapat kesempatan yang sama untuk melalui capstone project.</p>
-<br>
-<h3><strong>MK yang akan dipilih untuk dikonversi :</strong> </h3>
-<ol>
-    <li>(MII21-3030) Proyek Independen: Spesifikasi Proyek Independen (2 SKS)</li>
-<li>(MII21-3031) Proyek Independen: Proposal Proyek Independen (3 SKS)</li>
-<li>(MII21-3032) Proyek Independen: Sampel dan Definisi Dataset Proyek (2 SKS)</li>
-<li>(MII21-3033) Proyek Independen: Implementasi Proyek Independen (4 SKS)</li>
-<li>(MII21-3034) Proyek Independen: Kelas Seminar Proyek Independen (3 SKS) </li>
-<li>(MII21-4010) Softskill: Kemampuan Berkomunikasi (2 SKS)</li>
-<li>(MII21-4012) Softskill: Kemampuan Bekerjasama dan Kolaborasi (2 SKS)</li>
-<li>(MII21-4032) Hardskill: Pemecahan Masalah (2 SKS) </li>
-</ol>
-<br/>
-
-<h3><strong>Total SKS : 20 SKS</strong></h3> -->
-
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -105,7 +84,7 @@
     -->
     <script type="text/javascript">
       
-      var ros = new ROSLIB.Ros({url: "ws://<IP>:9090"});
+      var ros = new ROSLIB.Ros({url: "ws://10.42.0.2:9090"});
 
       ros.on("connection", function () {
         console.log("Connected to websocket server.");
@@ -156,21 +135,96 @@
         let y_move = Number($('#y_move').val());
         let z_move = Number($('#z_move').val());
 
+        // walking_param_.freq = 1.64999997616;
+        // walking_param_.doubleSupportRatio =  0.0450000017881;
+        // walking_param_.footDistance =  0.129999995232;
+        // walking_param_.footRise =  0.0450000017881;
+        // walking_param_.footPutDownZOffset= 0.0;
+        // walking_param_.footPutDownPhase= 1.0;
+        // walking_param_.footApexPhase= 0.5;
+        // walking_param_.footOvershootRatio= 0.0500000007451;
+        // walking_param_.footOvershootPhase= 0.850000023842;
+        // walking_param_.trunkHeight= 0.375;
+        // walking_param_.trunkPitch= 0.209439516068;
+        // walking_param_.trunkPhase= 0.600000023842;
+        // walking_param_.trunkXOffset= 0.00999999977648;
+        // walking_param_.trunkYOffset= 0.0;
+        // walking_param_.trunkSwing= 0.300000011921;
+        // walking_param_.trunkPause= 0.5;
+        // walking_param_.trunkXOffsetPCoefForward= 0.5;
+        // walking_param_.trunkXOffsetPCoefTurn= 0.0;
+        // walking_param_.trunkPitchPCoefForward= 0.0;
+        // walking_param_.trunkPitchPCoefTurn= 0.0;
+        // walking_param_.trunkYOnlyInDoubleSupport= false;
+        // walking_param_.mode= '';
+        // walking_param_.tuning= false;
+        // walking_param_.D_ANKLE_P_qw= 0.0;
+        // walking_param_.D_KNEE_qw= 0.0;
+        // walking_param_.D_HIP_P_qw= 0.0;
+        // walking_param_.KP_P_qw= 0.0;
+        // walking_param_.KD_P_qw= 0.0;
+        // walking_param_.KI_P_qw= 0.0;
+        // walking_param_.ShoulderGain_qw= 0.0;
+        // walking_param_.setpointPitch= 1.0;
+        // walking_param_.pitch_error_tol= 0.0;
+        // walking_param_.KP_X_qw= 0.0;
+        // walking_param_.KD_X_qw= 0.0;
+        // walking_param_.KI_X_qw= 0.0;
+        // walking_param_.Angle_0= 9.0;
+        // walking_param_.Angle_1= 7.0;
+        // walking_param_.Angle_2= 3.0;
+        // walking_param_.Angle_3= 8.0;
+        // walking_param_.Angle_4= 10.0;
+        // walking_param_.KD_0= 0.230000004172;
+        // walking_param_.KD_1= 0.180000007153;
+        // walking_param_.KD_2= 0.0;
+        // walking_param_.KD_3= 0.189999997616;
+        // walking_param_.KD_4= 0.239999994636;
+        // walking_param_.Gyro_0= 80.0;
+        // walking_param_.Gyro_1= 40.0;
+        // walking_param_.Gyro_2= 0.0;
+        // walking_param_.Gyro_3= 40.0;
+        // walking_param_.Gyro_4= 80.0;
+        // walking_param_.KP_0= 0.300000011921;
+        // walking_param_.KP_1= 0.20000000298;
+        // walking_param_.KP_2= 0.0;
+        // walking_param_.KP_3= 0.10000000149;
+        // walking_param_.KP_4= 0.300000011921;
         walking_param_.XMove = x_move;
         walking_param_.YMove = y_move;
         walking_param_.ZMove = z_move;
+        // console.log(walking_param_);
+        // let walking_params = new ROSLIB.Message({
 
-        console.log(x_move)
-        console.log(y_move)
-        console.log(z_move)
+        //       walking_param_,
+                    
+            // });
+          // console.log(walking_params)
+        // walking_param_.set({
+        //   XMove :x_move,
+        //   YMove :y_move,
+        //   ZMove :z_move,
+        // })
+        
+        // console.log(walking_param_)
+        
+        
+        // walking_param_.get(function(val){
+        //   val.XMove = x_move;
+        //   val.YMove = y_move;
+        //   val.ZMove = z_move;
+        //   console.log(val)
+        // });
+      
 
         let walking_msg = new ROSLIB.Message({
                 data: "start",
             });
 
+            console.log(walking_param_)
+            console.log(walking_msg)
         set_walking_param.publish(walking_param_);
         set_walking_command.publish(walking_msg);
-
       }
 
       function stop() {
