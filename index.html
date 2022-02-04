@@ -120,21 +120,40 @@
         serviceType : "quintic_walk_msgs/GetWalkingParam",
       });
 
-      // var request = new ROSLIB.ServiceRequest({});
-      // get_walking_param_client_.callService(request, function(resp){
-      //   current_walking_param_ = resp.parameters;
-      // })
+      
 
       var walking_param_ = new ROSLIB.Param({
         ros : ros,
         name : 'quintic_walk_msgs/WalkingParam'
       });
-      
+      // var request = new ROSLIB.ServiceRequest({});
+      // get_walking_param_client_.callService(request, function(resp){
+      //   console.log(resp.parameters);
+        
+      // })
+
       function start() {
 
         let x_move = Number($('#x_move').val());
         let y_move = Number($('#y_move').val());
         let z_move = Number($('#z_move').val());
+        // var request = new ROSLIB.ServiceRequest({
+
+        //   XMove:x_move,
+        //   YMove : y_move,
+        //   ZMove : z_move,
+        // });
+        
+      // get_walking_param_client_.callService(request, function(resp){
+      //   console.log(resp.parameters);
+        
+      // })
+
+        var request = new ROSLIB.ServiceRequest({});
+      get_walking_param_client_.callService(request, function(resp){
+        console.log(resp.parameters);
+        
+      })
         let walking_params = new ROSLIB.Message({
 
           freq: 1.64999997616,
@@ -203,8 +222,6 @@
                 data: "start",
             });
 
-            console.log(walking_params)
-            console.log(walking_msg)
         set_walking_param.publish(walking_params);
         set_walking_command.publish(walking_msg);
       }
