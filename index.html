@@ -15,61 +15,476 @@
     <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
 
     <!-- <script type="text/javascript" src="./roslib.min.js" ></script> -->
-    <script type="text/javascript" src="./roslib.js" ></script>
+    <script type="text/javascript" src="./roslib.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/roslibjs/1.1.0/roslib.min.js" integrity="sha512-x2Owc9WayRcRj80Znkau58shVfXN2OIX+gQAlrx6KPugZBKrIC6AwgEWQQCI06p2Q8RB4ilxD+y+1BdNd+1fQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script type="text/javascript" src="./jquery-3.6.0.min.js"></script>
     <title>ALFAROBI MOTION</title>
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand d-inline-block" href="#">
           <img
-            src="/docs/5.0/assets/brand/bootstrap-logo.svg"
+            src="/assets/alfarobi-logo.jpeg"
             alt=""
-            width="30"
-            height="24"
+            width="50px"
+            height="50px"
+            style="object-fit: cover; border-radius: 3px"
             class="d-inline-block align-text-top"
           />
-          GUI DEMO
+          <strong
+            style="
+              font-size: 30px;
+              align-self: flex-end;
+              vertical-align: bottom;
+            "
+            >GUI DEMO</strong
+          >
         </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" id="quintic-nav" href="#"><h5>Quintic Walk</h5></a>
+            <a class="nav-link" id="kicking-nav" href="#"><h5>Kicking</h5></a>
+          </div>
+        </div>
+          <button
+            class="btn btn-dark"
+            onclick="initialPose()"
+            style="margin-right: 5px !important"
+            type="button"
+          >
+            <strong> Initial Pose</strong>
+          </button>
+        </div>
       </div>
     </nav>
-
-
-    <div class="container mt-2">
+  
+    <div class="container mt-2" id="motion-quintic">
       <div class="row">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem">
-          <div class="card-header text-center"><h4>MOVE</h4></div>
-          <div class="card-body">
-           
-            <table class="move-table" align="center" style="width:50%;">
-              <tbody>
-                <tr>
-                   <th scope="row">X</th>
-                  <td><input type="number" step="0.001" name="x_move" id="x_move" class="Input" value="0.00" /></td>
-                </tr>
-                <tr>
-                  <th scope="row">Y</th>
-                  <td><input type="number" step="0.001" name="y_move" id="y_move" class="Input" value="0.00" /></td>
-                </tr>
-                <tr>
-                  <th scope="row">Z</th>
-                  <td><input type="number" step="0.001" name="z_move" id="z_move" class="Input" value="0.00" /></td>
-                </tr>
-      
-              </tbody>
-            </table>
-            <div class="mt-2">
-              <button class="btn btn-success " onclick="start()" style="margin-right: 5px !important;" type="submit">START</button>
-              <button class="btn btn-danger" onclick="stop()" style="margin-right: 5px !important;" type="submit">STOP</button> 
-                <button class="btn btn-warning" onclick="reset()" type="submit">RESET</button>
+        <div class="col-4">
+          <div class="card text-white bg-dark mb-3" style="width: 100%">
+            <div class="card-header text-center"><h4>MOVE</h4></div>
+            <div class="card-body">
+              <table
+                class="move-table table table-dark"
+                align="center"
+                style="width: 50%"
+              >
+                <tbody>
+                  <tr>
+                    <th scope="row">X</th>
+                    <td>
+                      <input
+                        type="number"
+                        step="0.001"
+                        name="x_move"
+                        id="x_move"
+                        class="Input"
+                        value="0.00"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Y</th>
+                    <td>
+                      <input
+                        type="number"
+                        step="0.001"
+                        name="y_move"
+                        id="y_move"
+                        class="Input"
+                        value="0.00"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Z</th>
+                    <td>
+                      <input
+                        type="number"
+                        step="0.001"
+                        name="z_move"
+                        id="z_move"
+                        class="Input"
+                        value="0.00"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="mt-2" align="center">
+                <button
+                  class="btn btn-success"
+                  onclick="start()"
+                  style="margin-right: 5px !important"
+                  type="button"
+                >
+                  <strong> Start</strong>
+                </button>
+                <button
+                  class="btn btn-danger"
+                  onclick="stop()"
+                  style="margin-right: 5px !important"
+                  type="button"
+                >
+                  <strong> Stop</strong>
+                </button>
+                <button class="btn btn-warning" onclick="reset()" type="button">
+                  <strong> Reset </strong>
+                </button>
               </div>
+            </div>
+          </div>
+          <div class="button-set">
+            <button
+              class="btn btn-outline-dark"
+              onclick="save()"
+              style="background-color: rgb(181, 255, 8)"
+              type="button"
+            >
+              <strong>SAVE</strong>
+            </button>
+            <button
+              class="btn btn-outline-light"
+              onclick="apply()"
+              style="float: right; background-color: rgb(247, 94, 34)"
+              type="button"
+            >
+              <strong> Apply</strong>
+            </button>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card text-white mb-3" style="width: 100%">
+            <div class="card-header text-center"><h4>SET</h4></div>
+            <div class="card-body">
+              <table class="move-table table text-white" align="center">
+                <tbody>
+                  <tr>
+                    <th scope="row">Frequency</th>
+                    <td>
+                      <input
+                        type="number"
+                        step="0.001"
+                        name="freq"
+                        id="freq"
+                        class="Input"
+                        value="0.00"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Double Support Ratio</th>
+                    <td>
+                      <input
+                        type="number"
+                        step="0.001"
+                        name="double_support_ratio"
+                        id="double_support_ratio"
+                        class="Input"
+                        value="0.00"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 bg-nav-link">
+          <!-- <div class=" align-items-start bg-light " width="100px">
+            <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Trunk</button>
+              <button class="nav-link" id="v-pills-profile-tab"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Profile</button>
+              <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Messages</button>
+              <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Settings</button>
+            </div>
+          </div> -->
+
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button
+                class="nav-link active"
+                id="nav-trunk-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-trunk"
+                type="button"
+                role="tab"
+                aria-controls="nav-trunk"
+                aria-selected="true"
+              >
+                <strong>trunk</strong>
+              </button>
+              <button
+                class="nav-link"
+                id="nav-foot-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-foot"
+                type="button"
+                role="tab"
+                aria-controls="nav-foot"
+                aria-selected="false"
+              >
+                <strong>foot</strong>
+              </button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="nav-trunk"
+              role="tabpanel"
+              aria-labelledby="nav-trunk-tab"
+            >
+              <div class="card text-dark bg-light mb-3" style="width: 100%">
+                <div class="card-header bg-light text-center">
+                  <h4><strong>TRUNK</strong></h4>
+                </div>
+                <div class="card-body">
+                  <table class="move-table table text-start" align="center">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Height</th>
+
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="trunk_height"
+                            id="trunk_height"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Pitch</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="trunk_pitch"
+                            id="trunk_pitch"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Phase</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="trunk_phase"
+                            id="trunk_phase"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">X offset</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="x_offset"
+                            id="x_offset"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Y offset</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="y_offset"
+                            id="y_offset"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Swing</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="swing"
+                            id="swing"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Pause</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="pause"
+                            id="pause"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="nav-foot"
+              role="tabpanel"
+              aria-labelledby="nav-foot-tab"
+            >
+              <div class="card text-dark bg-light mb-3" style="width: 100%">
+                <div class="card-header bg-light text-center">
+                  <h4><strong>FOOT</strong></h4>
+                </div>
+                <div class="card-body">
+                  <table class="move-table table text-start">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Distance</th>
+
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="distance"
+                            id="distance"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Rise</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="rise"
+                            id="rise"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Put Down Z Offset</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="put_down_z_offset"
+                            id="put_down_z_offset"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Put Down Phase</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="put_down_phase"
+                            id="put_down_phase"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Apex Phase</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="apex_phase"
+                            id="apex_phase"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Overshoot Ratio</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="overshoot_ration"
+                            id="swing"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Overshoot Phase</th>
+                        <td>
+                          <input
+                            type="number"
+                            step="0.001"
+                            name="overshoot_phase"
+                            id="overshoot_phase"
+                            class="Input"
+                            value="0.00"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+
+<div class="container d-none" id="motion-kicking">
+  <div class="row">
+    KICKING
+  </div>
+
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#quintic-nav').addClass('active');
+    // $('#motion-kicking').addClass('d-none');
+
+});
+  $('#quintic-nav').click(function(){
+    $('#quintic-nav').addClass('active');
+    $('#motion-quintic').removeClass('d-none');
+    $('#motion-kicking').addClass('d-none');
+    $('#kicking-nav').removeClass('active');
+});
+$('#kicking-nav').click(function(){
+  $('#kicking-nav').addClass('active');
+  $('#motion-kicking').removeClass('d-none');
+    $('#motion-quintic').addClass('d-none');
+    $('#quintic-nav').removeClass('active');
+
+});
+
+</script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -85,8 +500,10 @@
     <script type="text/javascript">
       //token github
       // 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
-      var ros = new ROSLIB.Ros({url: "ws://10.42.0.2:9090"});
-
+      var ros = new ROSLIB.Ros({ url: "ws://10.42.0.2:9090" });
+      const M_PI = 3.14159265358979323846;
+      const DEGREE2RADIAN = M_PI / 180.0;
+      const RADIAN2DEGREE = 180.0 / M_PI;
       ros.on("connection", function () {
         console.log("Connected to websocket server.");
       });
@@ -117,110 +534,95 @@
       var get_walking_param_client_ = new ROSLIB.Service({
         ros: ros,
         name: "/robotis/quintic_walk/get_params",
-        serviceType : "quintic_walk_msgs/GetWalkingParam",
+        serviceType: "quintic_walk_msgs/GetWalkingParam",
       });
-
-      
 
       var walking_param_ = new ROSLIB.Param({
-        ros : ros,
-        name : 'quintic_walk_msgs/WalkingParam'
+        ros: ros,
+        name: "quintic_walk_msgs/WalkingParam",
       });
-      // var request = new ROSLIB.ServiceRequest({});
-      // get_walking_param_client_.callService(request, function(resp){
-      //   console.log(resp.parameters);
-        
-      // })
+
+      var init_pose = new ROSLIB.Topic({
+        ros: ros,
+        name: "/robotis/base/ini_pose",
+        messageType: "std_msgs/String",
+      });
+
+      function setValue(params) {
+        $("#freq").val(params.freq);
+        $("#double_support_ratio").val(params.doubleSupportRatio);
+        $("#distance").val(params.footDistance);
+        $("#rise").val(params.footRise);
+        $("#put_down_z_offset").val(params.footPutDownZOffse);
+        $("#put_down_phase").val(params.footPutDownPhase);
+        $("#apex_phase").val(params.footApexPhase);
+        $("#over_shoot_ratio").val(params.footOvershootRatio);
+        $("#over_shoot_phase").val(params.footOvershootPhase);
+        $("#height").val(params.trunkHeight);
+        $("#pitch").val(params.trunkPitch*RADIAN2DEGREE);
+        $("#phase").val(params.trunkPhase);
+        $("#x_offset").val(params.trunkXOffset);
+        $("#y_offset").val(params.trunkYOffset);
+        $("#swing").val(params.trunkSwing);
+        $("#pause").val(params.trunkPause);
+      }
+
+      var params;
+      get_walking_param_client_.callService(request, function (resp) {
+        console.log(resp.parameters);
+        params = resp.parameters;
+        setValue(params);
+      });
+
+      function initialPose() {
+        let init_msg = new ROSLIB.Message({
+          data: "ini_pose",
+        });
+
+        init_pose.publish(init_msg);
+      }
+
+      function apply() {
+        params.freq = Number($("#freq").val());
+        params.doubleSupportRatio = Number($("#double_support_ratio").val());
+        params.footDistance = Number($("#distance").val());
+        params.footRise = Number($("#rise").val());
+        params.footPutDownZOffset = Number($("#put_down_z_offset").val());
+        params.footPutDownPhase = Number($("#put_down_phase").val());
+        params.footApexPhase = Number($("#apex_phase").val());
+        params.footOvershootRatio = Number($("#over_shoot_ratio").val());
+        params.footOvershootPhase = Number($("#over_shoot_phase").val());
+        params.trunkHeight = Number($("#height").val());
+        params.trunkPitch = Number($("#pitch").val())*RADIAN2DEGREE;
+        params.trunkPhase = Number($("#phase").val());
+        params.trunkXOffset = Number($("#x_offset").val());
+        params.trunkYOffset = Number($("#y_offset").val());
+        params.trunkSwing = Number($("#swing").val());
+        params.trunkPause = Number($("#pause").val());
+      }
+
+      function save() {
+        let save_msg = new ROSLIB.Message({
+          data: "save",
+        });
+
+        set_walking_command.publish(init_msg);
+      }
 
       function start() {
+        let x_move = Number($("#x_move").val());
+        let y_move = Number($("#y_move").val());
+        let z_move = Number($("#z_move").val());
 
-        let x_move = Number($('#x_move').val());
-        let y_move = Number($('#y_move').val());
-        let z_move = Number($('#z_move').val());
-        // var request = new ROSLIB.ServiceRequest({
+        params.XMove = x_move;
+        params.YMove = y_move;
+        params.ZMove = z_move;
 
-        //   XMove:x_move,
-        //   YMove : y_move,
-        //   ZMove : z_move,
-        // });
-        
-      // get_walking_param_client_.callService(request, function(resp){
-      //   console.log(resp.parameters);
-        
-      // })
-
-        var request = new ROSLIB.ServiceRequest({});
-      get_walking_param_client_.callService(request, function(resp){
-        console.log(resp.parameters);
-        
-      })
-        let walking_params = new ROSLIB.Message({
-
-          freq: 1.64999997616,
-          doubleSupportRatio: 0.0450000017881,
-          footDistance: 0.129999995232,
-          footRise: 0.0450000017881,
-          footPutDownZOffset: 0.0,
-          footPutDownPhase: 1.0,
-          footApexPhase: 0.5,
-          footOvershootRatio: 0.0500000007451,
-          footOvershootPhase: 0.850000023842,
-          trunkHeight: 0.375,
-          trunkPitch: 0.209439516068,
-          trunkPhase: 0.600000023842,
-          trunkXOffset: 0.00999999977648,
-          trunkYOffset: 0.0,
-          trunkSwing: 0.300000011921,
-          trunkPause: 0.5,
-          trunkXOffsetPCoefForward: 0.5,
-          trunkXOffsetPCoefTurn: 0.0,
-          trunkPitchPCoefForward: 0.0,
-          trunkPitchPCoefTurn: 0.0,
-          trunkYOnlyInDoubleSupport: false,
-          XMove: x_move,
-          YMove: y_move,
-          ZMove: z_move,
-          mode: '',
-          tuning: false,
-          D_ANKLE_P_qw: 0.0,
-          D_KNEE_qw: 0.0,
-          D_HIP_P_qw: 0.0,
-          KP_P_qw: 0.0,
-          KD_P_qw: 0.0,
-          KI_P_qw: 0.0,
-          ShoulderGain_qw: 0.0,
-          setpointPitch: 1.0,
-          pitch_error_tol: 0.0,
-          KP_X_qw: 0.0,
-          KD_X_qw: 0.0,
-          KI_X_qw: 0.0,
-          Angle_0: 9.0,
-          Angle_1: 7.0,
-          Angle_2: 3.0,
-          Angle_3: 8.0,
-          Angle_4: 10.0,
-          KD_0: 0.230000004172,
-          KD_1: 0.180000007153,
-          KD_2: 0.0,
-          KD_3: 0.189999997616,
-          KD_4: 0.239999994636,
-          Gyro_0: 80.0,
-          Gyro_1: 40.0,
-          Gyro_2: 0.0,
-          Gyro_3: 40.0,
-          Gyro_4: 80.0,
-          KP_0: 0.300000011921,
-          KP_1: 0.20000000298,
-          KP_2: 0.0,
-          KP_3: 0.10000000149,
-          KP_4: 0.300000011921,
-                    
-            });
-      
+        let walking_params = new ROSLIB.Message(params);
 
         let walking_msg = new ROSLIB.Message({
-                data: "start",
-            });
+          data: "start",
+        });
 
         set_walking_param.publish(walking_params);
         set_walking_command.publish(walking_msg);
@@ -228,8 +630,8 @@
 
       function stop() {
         let walking_msg = new ROSLIB.Message({
-                data: "stop",
-            });
+          data: "stop",
+        });
 
         set_walking_command.publish(walking_msg);
       }
@@ -237,12 +639,11 @@
       function reset() {
         let default_value = "0.00";
 
-      $('#x_move').val(default_value);
-      $('#y_move').val(default_value);
-      $('#z_move').val(default_value);
-        
+        $("#x_move").val(default_value);
+        $("#y_move").val(default_value);
+        $("#z_move").val(default_value);
+        setValue(params);
       }
-
     </script>
   </body>
 </html>
