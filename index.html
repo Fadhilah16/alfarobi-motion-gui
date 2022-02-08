@@ -13,7 +13,7 @@
       crossorigin="anonymous"
     />
     <link href="./style.css" rel="stylesheet" crossorigin="anonymous" />
-
+    <link rel="icon" type="image/x-icon" href="/assets/alfarobi-icon.JPG">
     <!-- <script type="text/javascript" src="./roslib.min.js" ></script> -->
     <script type="text/javascript" src="./roslib.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/roslibjs/1.1.0/roslib.min.js" integrity="sha512-x2Owc9WayRcRj80Znkau58shVfXN2OIX+gQAlrx6KPugZBKrIC6AwgEWQQCI06p2Q8RB4ilxD+y+1BdNd+1fQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
@@ -60,7 +60,7 @@
       </div>
     </nav>
   
-    <div class="container mt-2" id="motion-quintic">
+    <!-- <div class="container mt-2" id="motion-quintic">
       <div class="row">
         <div class="col-4">
           <div class="card text-white bg-dark mb-3" style="width: 100%">
@@ -116,7 +116,7 @@
               <div class="mt-2" align="center">
                 <button
                   class="btn btn-success"
-                  onclick="start()"
+                  onclick="startQuincticWalking()"
                   style="margin-right: 5px !important"
                   type="button"
                 >
@@ -124,13 +124,13 @@
                 </button>
                 <button
                   class="btn btn-danger"
-                  onclick="stop()"
+                  onclick="stopQuinticWalking()"
                   style="margin-right: 5px !important"
                   type="button"
                 >
                   <strong> Stop</strong>
                 </button>
-                <button class="btn btn-warning" onclick="reset()" type="button">
+                <button class="btn btn-warning" onclick="resetQuinticParams()" type="button">
                   <strong> Reset </strong>
                 </button>
               </div>
@@ -139,7 +139,7 @@
           <div class="button-set">
             <button
               class="btn btn-outline-dark"
-              onclick="save()"
+              onclick="saveQuinticParams()"
               style="background-color: rgb(181, 255, 8)"
               type="button"
             >
@@ -148,7 +148,7 @@
 
             <button
               class="btn btn-outline-light"
-              onclick="apply()"
+              onclick="applyQuinticParams()"
               style="background-color: rgb(247, 94, 34)"
               type="button"
             >
@@ -203,15 +203,7 @@
           </div>
         </div>
         <div class="col-4 bg-nav-link">
-          <!-- <div class=" align-items-start bg-light " width="100px">
-            <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Trunk</button>
-              <button class="nav-link" id="v-pills-profile-tab"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Profile</button>
-              <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Messages</button>
-              <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" href="#offcanvasExample"  role="button" aria-controls="offcanvasRight">Settings</button>
-            </div>
-          </div> -->
-
+ 
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <button
@@ -464,14 +456,442 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
-<div class="container d-none" id="motion-kicking">
+<div class="container mt-2" id="motion-kicking">
   <div class="row">
-    KICKING
-  </div>
+    <div class="col-4">
+      <div class="card text-white mb-3 mt-2" style="width: 100%">
+        <div class="card-header text-center">    
+          <button style="width: 100%;height: 100px;background-color: rgb(255, 75, 75);" class="btn btn-outline-dark" onclick="leftKick()"> <h2> <strong>Left Kick </strong>  </h2></button>
+        </div>
+        <div class="card-body">
+          <table class="move-table table text-white" align="center">
+            <tbody>
+              <tr>
+                <th scope="row">Leg_L_X</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Leg_L_X"
+                    id="Leg_L_X"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">L_Shift</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="L_Shift"
+                    id="L_Shift"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">L_Lift</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="L_Lift"
+                    id="L_Lift"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">L_CoolDown</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="L_CoolDown"
+                    id="L_CoolDown"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">L_Roll</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="L_Roll"
+                    id="L_Roll"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        
+    <div class="card text-white mb-3 mt-1" style="width: 100%">
+      <div class="card-header text-center">
+        <h4>TIME</h4>
+      </div>
+      <div class="card-body">
+        <table class="move-table table text-white" align="center">
+          <tbody>
+            <tr>
+              <th scope="row">Time_Shift</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Time_Shift"
+                  id="Time_Shift"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Time_Lift</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Time_Lift"
+                  id="Time_Lift"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Time_Retract</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Time_Retract"
+                  id="Time_Retract"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Time_Kick</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Time_Kick"
+                  id="Time_Kick"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Time_CoolDown</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Time_CoolDown"
+                  id="Time_CoolDown"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Time_BringDown</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Time_BringDown"
+                  id="Time_BringDown"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+    <div class="col-4">
+      <div align="center">
+        <button class="btn btn-success mt-2" style="width: 80%;height: 50px;" onclick="setModeKicking()"> <h4><strong>  Kicking Mode </strong></h4> </button>
+        <button class="btn btn-danger mt-2" style="width: 80%;height: 50px;"onclick="stopKicking()"> <h4><strong>  Stop </strong></h4></button>
+        <button class="btn btn-info mt-2" style="width: 80%;height: 50px;" onclick="refreshKickingParams()"> <h4><strong>  Refresh </strong></h4></button>
+        <button class="btn btn-secondary mt-2" style="width: 80%;height: 50px;" onclick="applyKickingParams()"> <h4><strong>  Apply </strong></h4></button>
+        <button class="btn btn-primary mt-2" style="width: 80%;height: 50px;" onclick="saveKickingParams()"> <h4><strong>  Save </strong></h4></button>
+        
+      </div>
+      <div class="card text-white mb-3 mt-2 mid" style="width: 100%">
+        <div class="card-body">
+          <table class="move-table table text-white" align="center">
+            <tbody>
+              <tr>
+                <th scope="row">Gain_Angle_Pitch</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Gain_Angle_Pitch"
+                    id="Gain_Angle_Pitch"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Gain_Angle_Roll</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Gain_Angle_Roll"
+                    id="Gain_Angle_Roll"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Gain_Velocity_Pitch</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Gain_Velocity_Pitch"
+                    id="Gain_Velocity_Pitch"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Gain_Velocity_Roll</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Gain_Velocity_Roll"
+                    id="Gain_Velocity_Roll"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Gain_Integral</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Gain_Integral"
+                    id="Gain_Integral"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
+    </div>
+    <div class="col-4">
+      <div class="card text-white mb-3 mt-2" style="width: 100%">
+        <div class="card-header text-center">    
+          <button style="width: 100%;height: 100px; background-color: rgb(108, 195, 253);" class="btn btn-outline-dark" onclick="rightKick()" > <h2> <strong>Right Kick </strong> </h2></button>
+        </div>
+        <div class="card-body">
+          <table class="move-table table text-white" align="center">
+            <tbody>
+              <tr>
+                <th scope="row">Leg_R_X</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="Leg_R_X"
+                    id="Leg_R_X"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">R_Shift</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="R_Shift"
+                    id="R_Shift"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">R_Lift</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="R_Lift"
+                    id="R_Lift"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">R_CoolDown</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="R_CoolDown"
+                    id="R_CoolDown"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">R_Roll</th>
+                <td>
+                  <input
+                    type="number"
+                    step="0.001"
+                    name="R_Roll"
+                    id="R_Roll"
+                    class="Input"
+                    value="0.00"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        
+    <div class="card text-white mb-3 mt-1" style="width: 100%">
+      <div class="card-body">
+        <table class="move-table table text-white" align="center">
+          <tbody>
+            <tr>
+              <th scope="row">Body_Height</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Body_Height"
+                  id="Body_Height"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Body_Tilt</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Body_Tilt"
+                  id="Body_Tilt"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Leg_X</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Leg_X"
+                  id="Leg_X"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Leg_Y</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Leg_Y"
+                  id="Leg_Y"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Leg_Z</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Leg_Z"
+                  id="Leg_Z"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">X_Retract</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="X_Retract"
+                  id="X_Retract"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Z_Retract</th>
+              <td>
+                <input
+                  type="number"
+                  step="0.001"
+                  name="Z_Retract"
+                  id="Z_Retract"
+                  class="Input"
+                  value="0.00"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -480,6 +900,8 @@
     // $('#motion-kicking').addClass('d-none');
 
 });
+
+  
   $('#quintic-nav').click(function(){
     $('#quintic-nav').addClass('active');
     $('#motion-quintic').removeClass('d-none');
@@ -529,7 +951,29 @@ $('#kicking-nav').click(function(){
 
       // Publishing a Topic
       // ------------------
+      var module_control_preset = new ROSLIB.Topic({
+        ros:ros,
+        name:"/robotis/enable_ctrl_module",
+        messageType:"std_msgs/String"
+      })
 
+      var request = new ROSLIB.ServiceRequest({});
+
+      var init_pose = new ROSLIB.Topic({
+        ros: ros,
+        name: "/robotis/base/ini_pose",
+        messageType: "std_msgs/String",
+      });
+
+      function initialPose() {
+        let init_msg = new ROSLIB.Message({
+          data: "ini_pose",
+        });
+
+        init_pose.publish(init_msg);
+      }
+
+      //QUINTIC WALK
       var set_walking_command = new ROSLIB.Topic({
         ros: ros,
         name: "/robotis/quintic_walk/command",
@@ -553,11 +997,7 @@ $('#kicking-nav').click(function(){
         name: "quintic_walk_msgs/WalkingParam",
       });
 
-      var init_pose = new ROSLIB.Topic({
-        ros: ros,
-        name: "/robotis/base/ini_pose",
-        messageType: "std_msgs/String",
-      });
+      
 
       var set_walking_params = new ROSLIB.Topic({
         ros:ros,
@@ -565,7 +1005,7 @@ $('#kicking-nav').click(function(){
         messageType:"quintic_walk_msgs/WalkingParam"
       })
 
-      function setValue(params) {
+      function setQuinticValue(params) {
         $("#freq").val(params.freq);
         $("#double_support_ratio").val(params.doubleSupportRatio);
         $("#distance").val(params.footDistance);
@@ -582,101 +1022,253 @@ $('#kicking-nav').click(function(){
         $("#y_offset").val(params.trunkYOffset);
         $("#swing").val(params.trunkSwing);
         $("#pause").val(params.trunkPause);
+
+        console.log("set quintic parameters");
       }
 
-      var params;
-      var request = new ROSLIB.ServiceRequest({});
+      var quintic_params;
+      
       get_walking_param_client_.callService(request, function (resp) {
-        params = resp.parameters;
-        setValue(params);
+        quintic_params = resp.parameters;
+        setQuinticValue(quintic_params);
       });
 
-      var module_control_preset = new ROSLIB.Topic({
-        ros:ros,
-        name:"/robotis/enable_ctrl_module",
-        messageType:"std_msgs/String"
-      })
+      
 
-      function initialPose() {
-        let init_msg = new ROSLIB.Message({
-          data: "ini_pose",
-        });
-
-        init_pose.publish(init_msg);
-      }
+      
       function setModeQuintic(){
 
         let quintic_mode_msg = new ROSLIB.Message({
           data:"quintic_walk",
         })
-
+        console.log("quintic mode");
         module_control_preset.publish(quintic_mode_msg)
       }
-      function apply() {
-        params.freq = Number($("#freq").val());
-        params.doubleSupportRatio = Number($("#double_support_ratio").val());
-        params.footDistance = Number($("#distance").val());
-        params.footRise = Number($("#rise").val());
-        params.footPutDownZOffset = Number($("#put_down_z_offset").val());
-        params.footPutDownPhase = Number($("#put_down_phase").val());
-        params.footApexPhase = Number($("#apex_phase").val());
-        params.footOvershootRatio = Number($("#overshoot_ratio").val());
-        params.footOvershootPhase = Number($("#overshoot_phase").val());
-        params.trunkHeight = Number($("#height").val());
-        params.trunkPitch = Number($("#pitch").val())*DEGREE2RADIAN;
-        params.trunkPhase = Number($("#phase").val());
-        params.trunkXOffset = Number($("#x_offset").val());
-        params.trunkYOffset = Number($("#y_offset").val());
-        params.trunkSwing = Number($("#swing").val());
-        params.trunkPause = Number($("#pause").val());
-        let apply_msg = new ROSLIB.Message(params);
-        console.log(apply_msg)
-        set_walking_params.publish(apply_msg);
+      function applyQuinticParams() {
+        quintic_params.freq = Number($("#freq").val());
+        quintic_params.doubleSupportRatio = Number($("#double_support_ratio").val());
+        quintic_params.footDistance = Number($("#distance").val());
+        quintic_params.footRise = Number($("#rise").val());
+        quintic_params.footPutDownZOffset = Number($("#put_down_z_offset").val());
+        quintic_params.footPutDownPhase = Number($("#put_down_phase").val());
+        quintic_params.footApexPhase = Number($("#apex_phase").val());
+        quintic_params.footOvershootRatio = Number($("#overshoot_ratio").val());
+        quintic_params.footOvershootPhase = Number($("#overshoot_phase").val());
+        quintic_params.trunkHeight = Number($("#height").val());
+        quintic_params.trunkPitch = Number($("#pitch").val())*DEGREE2RADIAN;
+        quintic_params.trunkPhase = Number($("#phase").val());
+        quintic_params.trunkXOffset = Number($("#x_offset").val());
+        quintic_params.trunkYOffset = Number($("#y_offset").val());
+        quintic_params.trunkSwing = Number($("#swing").val());
+        quintic_params.trunkPause = Number($("#pause").val());
+        let apply_quintic_params_msg = new ROSLIB.Message(quintic_params);
+        console.log("apply parameters");
+        set_walking_params.publish(apply_quintic_params_msg);
       }
 
-      function save() {
-        let save_msg = new ROSLIB.Message({
+      function saveQuinticParams() {
+        let save_quintic_msg = new ROSLIB.Message({
           data: "save",
         });
-
-        set_walking_command.publish(init_msg);
+        console.log("save parameters")
+        set_walking_command.publish(save_quintic_msg);
       }
 
-      function start() {
+      function startQuincticWalking() {
         let x_move = Number($("#x_move").val());
         let y_move = Number($("#y_move").val());
         let z_move = Number($("#z_move").val());
 
-        params.XMove = x_move;
-        params.YMove = y_move;
-        params.ZMove = z_move;
+        quintic_params.XMove = x_move;
+        quintic_params.YMove = y_move;
+        quintic_params.ZMove = z_move;
 
-        let walking_params = new ROSLIB.Message(params);
+        let walking_params = new ROSLIB.Message(quintic_params);
 
         let walking_msg = new ROSLIB.Message({
           data: "start",
         });
-        console.log(walking_params)
+        console.log("start walking")
         set_walking_param.publish(walking_params);
         set_walking_command.publish(walking_msg);
+
       }
 
-      function stop() {
+      function stopQuinticWalking() {
         let walking_msg = new ROSLIB.Message({
           data: "stop",
         });
-
+        console.log("stop walking")
         set_walking_command.publish(walking_msg);
       }
 
-      function reset() {
+      function resetQuinticParams() {
         let default_value = "0.00";
 
         $("#x_move").val(default_value);
         $("#y_move").val(default_value);
         $("#z_move").val(default_value);
-        setValue(params);
+        setQuinticValue(params);
+        console.log("reset all parameters");
       }
+
+
+    //===========================================================
+    // KICKING
+    var kicking_params;
+    var get_kicking_param_client = new ROSLIB.Service({
+      ros:ros,
+      name:"/alfarobi/kicking/kicking_get_params",
+      serviceType:"kicking_module_msgs/GetKickingParam"
+    })
+
+    var set_kicking_param_pub = new ROSLIB.Topic({
+      ros:ros,
+      name:"/alfarobi/kicking/kicking_set_params",
+      messageType:"kicking_module_msgs/KickingParam"
+    })
+
+    var kicking_command_pub = new ROSLIB.Topic({
+      ros:ros,
+      name:"/alfarobi/kicking/command",
+      messageType:"std_msgs/String"
+    })
+
+    function leftKick() {
+      let left_kick_msg = new ROSLIB.Message({
+        data:"left_kick"
+      });
+
+      kicking_command_pub.publish(left_kick_msg)
+    }
+
+    function rightKick() {
+      let left_kick_msg = new ROSLIB.Message({
+        data:"right_kick"
+      });
+
+      kicking_command_pub.publish(right_kick_msg)
+    }
+
+    function setKickingValue(params){
+      $("#Body_Height").val(Number(params.Body_Height));
+      $("#Body_Tilt").val(Number(params.Body_Tilt));
+      $("#Leg_X").val(Number(params.Leg_X));
+      $("#Leg_Y").val(Number(params.Leg_Y));
+      $("#Leg_Z").val(Number(params.Leg_Z));
+      $("#X_Retract").val(Number(params.X_Retract));
+      $("#Z_Retract").val(Number(params.Z_Retract));
+
+      $("#Leg_R_X").val(Number(params.Leg_R_X));
+      $("#Leg_L_X").val(Number(params.Leg_L_X));
+      $("#R_Roll").val(Number(params.R_Roll));
+      $("#L_Roll").val(Number(params.L_Roll));
+
+      $("#R_Shift").val(Number(params.R_Shift));
+      $("#L_Shift").val(Number(params.L_Shift));
+      $("#R_Lift").val(Number(params.R_Lift));
+      $("#L_Lift").val(Number(params.L_Lift));
+      $("#R_CoolDown").val(Number(params.R_CoolDown));
+      $("#L_CoolDown").val(Number(params.L_CoolDown));
+
+      $("#Time_Shift").val(Number(params.Time_Shift));
+      $("#Time_Lift").val(Number(params.Time_Lift));
+      $("#Time_Retract").val(Number(params.Time_Retract));
+      $("#Time_Kick").val(Number(params.Time_Kick));
+      $("#Time_CoolDown").val(Number(params.Time_CoolDown));
+      $("#Time_BringDown").val(Number(params.Time_BringDown));
+      
+      $("#Gain_Angle_Pitch").val(Number(params.Gain_Angle_Pitch));
+      $("#Gain_Angle_Roll").val(Number(params.Gain_Angle_Roll));
+      $("#Gain_Velocity_Pitch").val(Number(params.Gain_Velocity_Pitch));
+      $("#Gain_Velocity_Roll").val(Number(params.Gain_Velocity_Roll));
+      $("#Gain_Integral").val(Number(params.Gain_Integral));
+
+
+    }
+
+    get_kicking_param_client.callService(request, function (resp) {
+      kicking_params = resp.parameters;
+      setKickingValue(kicking_params);
+    })
+
+    function setModeKicking(params) {
+      let kicking_mode_msg = new ROSLIB.Message({
+          data:"kicking",
+        })
+        console.log("kicking mode");
+        module_control_preset.publish(kicking_mode_msg)
+    }
+
+    function stopKicking() {
+      let stop_kicking_msg = new ROSLIB.Message({
+        data:"stop"
+      })
+
+      kicking_command_pub.publish(stop_kicking_msg);
+
+    }
+
+    function refreshKickingParams(){
+      get_kicking_param_client.callService(request, function (resp) {
+      kicking_params = resp.parameters;
+      setKickingValue(kicking_params);
+    })
+    }
+
+    
+
+    function applyKickingParams(){
+        kicking_params.Body_Height = Number($("#Body_Height").val());
+        kicking_params.Body_Tilt = Number($("#Body_Tilt").val());
+        kicking_params.Leg_X = Number($("#Leg_X").val());
+        kicking_params.Leg_Y = Number($("#Leg_Y").val());
+        kicking_params.Leg_Z = Number($("#Leg_Z").val());
+        kicking_params.X_Retract = Number($("#X_Retract").val());
+        kicking_params.Z_Retract = Number($("#Z_Retract").val());
+
+        kicking_params.Leg_R_X = Number($("#Leg_R_X").val());
+        kicking_params.Leg_L_X = Number($("#Leg_L_X").val());
+        kicking_params.R_Roll = Number($("#R_Roll").val());
+        kicking_params.L_Roll = Number($("#L_Roll").val());
+
+        kicking_params.R_Shift = Number($("#R_Shift").val());
+        kicking_params.L_Shift = Number($("#L_Shift").val());
+        kicking_params.R_Lift = Number($("#R_Lift").val());
+        kicking_params.L_Lift = Number($("#L_Lift").val());
+        kicking_params.R_CoolDown = Number($("#R_CoolDown").val());
+        kicking_params.L_CoolDown = Number($("#L_CoolDown").val());
+
+        kicking_params.Time_Shift = Number($("#Time_Shift").val());
+        kicking_params.Time_Lift = Number($("#Time_Lift").val());
+        kicking_params.Time_Retract = Number($("#Time_Retract").val());
+        kicking_params.Time_Kick = Number($("#Time_Kick").val());
+        kicking_params.Time_CoolDown = Number($("#Time_CoolDown").val());
+        kicking_params.Time_BringDown = Number($("#Time_BringDown").val());
+
+        kicking_params.Gain_Angle_Pitch = Number($("#Gain_Angle_Pitch").val());
+        kicking_params.Gain_Angle_Roll = Number($("#Gain_Angle_Roll").val());
+        kicking_params.Gain_Velocity_Pitch = Number($("#Gain_Velocity_Pitch").val());
+        kicking_params.Gain_Velocity_Roll = Number($("#Gain_Velocity_Roll").val());
+        kicking_params.Gain_Integral = Number($("#Gain_Integral").val());
+
+        let kicking_params_msg = new ROSLIB.Message(kicking_params)
+
+        set_kicking_param_pub.publish(kicking_params_msg);
+
+    }
+
+    function saveKickingParams() {
+      let save_kicking_msg = new ROSLIB.Message({
+        data:"save"
+      })
+
+      kicking_command_pub.publish(save_kicking_msg);
+
+    }
+
+
+
     </script>
   </body>
 </html>

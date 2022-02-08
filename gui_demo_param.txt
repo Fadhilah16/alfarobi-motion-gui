@@ -117,3 +117,41 @@ KP_1: 0.20000000298,
 KP_2: 0.0,
 KP_3: 0.10000000149,
 KP_4: 0.300000011921,
+
+
+=====================================
+
+float32 Body_Height
+float32 Body_Tilt
+float32 L_Body_Tilt
+float32 R_Body_Tilt
+float32 Leg_X
+float32 Leg_Y
+float32 Leg_Z
+float32 X_Retract
+float32 Z_Retract
+
+float32 Leg_R_X
+float32 Leg_L_X
+float32 R_Roll
+float32 L_Roll
+
+float32 R_Shift
+float32 L_Shift
+float32 R_Lift
+float32 L_Lift
+float32 R_CoolDown
+float32 L_CoolDown
+
+float32 Time_Shift
+float32 Time_Lift
+float32 Time_Retract
+float32 Time_Kick
+float32 Time_CoolDown
+float32 Time_BringDown
+
+float32 Gain_Angle_Pitch
+float32 Gain_Angle_Roll
+float32 Gain_Velocity_Pitch
+float32 Gain_Velocity_Roll
+float32 Gain_Integral
