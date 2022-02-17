@@ -886,7 +886,12 @@
 
   <div class="container mt-2 d-none" id="motion-head">
     <div class="row">
+      <div class="mb-2" onclick="setModeHeadModule()">
+        <button class="btn btn-success">
+          Head Module Mode
+        </button>
 
+      </div>
       <div class="bg-light">
 
         <div>
@@ -1181,7 +1186,7 @@
     }
 
     function rightKick() {
-      let left_kick_msg = new ROSLIB.Message({
+      let right_kick_msg = new ROSLIB.Message({
         data: "right_kick"
       });
 
@@ -1227,10 +1232,11 @@
 
     get_kicking_param_client.callService(request, function (resp) {
       kicking_params = resp.parameters;
+      console.log(kicking_params)
       setKickingValue(kicking_params);
     })
 
-    function setModeKicking(params) {
+    function setModeKicking() {
       let kicking_mode_msg = new ROSLIB.Message({
         data: "kicking",
       })
@@ -1310,12 +1316,20 @@
     var head_pan_value = 0;
     var head_tilt_value = 0;
 
+    function setModeHeadModule(params) {
+      let head_module_mode_msg = new ROSLIB.Message({
+        data: "head_control_module",
+      })
+      console.log("Head module mode");
+      module_control_preset.publish(head_module_mode_msg)
+    }
+
+
     var set_head_joint_angle_pub = new ROSLIB.Topic({
       ros: ros,
       name: "/robotis/head_control/set_joint_states",
       messageType: "sensor_msgs/JointState"
     })
-
 
 
     $(document).on('input', '#head_pan_slider', function () {
