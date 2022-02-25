@@ -790,19 +790,6 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">Swing_Roll</th>
-                <td>
-                  <input
-                    type="number"
-                    step="0.001"
-                    name="Swing_Roll"
-                    id="Swing_Roll"
-                    class="Input"
-                    value="0.00"
-                  />
-                </td>
-              </tr>
-              <tr>
                 <th scope="row">Swing_Pitch</th>
                 <td>
                   <input
@@ -978,8 +965,8 @@
                   <input
                     type="number"
                     step="0.001"
-                    name="R_Lift_Y"
-                    id="R_Lift_Y"
+                    name="R_Retract_X"
+                    id="R_Retract_X"
                     class="Input"
                     value="0.00"
                   />
@@ -991,8 +978,8 @@
                   <input
                     type="number"
                     step="0.001"
-                    name="R_Lift_Y"
-                    id="R_Lift_Y"
+                    name="R_Retract_Y"
+                    id="R_Retract_Y"
                     class="Input"
                     value="0.00"
                   />
@@ -1004,8 +991,8 @@
                   <input
                     type="number"
                     step="0.001"
-                    name="R_Lift_Y"
-                    id="R_Lift_Y"
+                    name="R_Retract_Z"
+                    id="R_Retract_Z"
                     class="Input"
                     value="0.00"
                   />
@@ -1162,7 +1149,7 @@
   <script type="text/javascript">
     //token github
     // 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
-    // alfa : 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
+    // alfa : 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
     var ros = new ROSLIB.Ros({ url: "ws://0.0.0.0:9090" });
     const M_PI = 3.14159265358979323846;
     const DEGREE2RADIAN = M_PI / 180.0;
@@ -1236,22 +1223,22 @@
     })
 
     function setQuinticValue(params) {
-      $("#freq").val(params.freq);
-      $("#double_support_ratio").val(params.doubleSupportRatio);
-      $("#distance").val(params.footDistance);
-      $("#rise").val(params.footRise);
-      $("#put_down_z_offset").val(params.footPutDownZOffset);
-      $("#put_down_phase").val(params.footPutDownPhase);
-      $("#apex_phase").val(params.footApexPhase);
-      $("#overshoot_ratio").val(params.footOvershootRatio);
-      $("#overshoot_phase").val(params.footOvershootPhase);
-      $("#height").val(params.trunkHeight);
-      $("#pitch").val(params.trunkPitch * RADIAN2DEGREE);
-      $("#phase").val(params.trunkPhase);
-      $("#x_offset").val(params.trunkXOffset);
-      $("#y_offset").val(params.trunkYOffset);
-      $("#swing").val(params.trunkSwing);
-      $("#pause").val(params.trunkPause);
+      $("#freq").val(Number(params.freq).toFixed(4));
+      $("#double_support_ratio").val(Number(params.doubleSupportRatio).toFixed(4));
+      $("#distance").val(Number(params.footDistance).toFixed(4));
+      $("#rise").val(Number(params.footRise).toFixed(4));
+      $("#put_down_z_offset").val(Number(params.footPutDownZOffset).toFixed(4));
+      $("#put_down_phase").val(Number(params.footPutDownPhase).toFixed(4));
+      $("#apex_phase").val(Number(params.footApexPhase).toFixed(4));
+      $("#overshoot_ratio").val(Number(params.footOvershootRatio).toFixed(4));
+      $("#overshoot_phase").val(Number(params.footOvershootPhase).toFixed(4));
+      $("#height").val(Number(params.trunkHeight).toFixed(4));
+      $("#pitch").val(Number(params.trunkPitch * RADIAN2DEGREE).toFixed(4));
+      $("#phase").val(Number(params.trunkPhase).toFixed(4));
+      $("#x_offset").val(Number(params.trunkXOffset).toFixed(4));
+      $("#y_offset").val(Number(params.trunkYOffset).toFixed(4));
+      $("#swing").val(Number(params.trunkSwing).toFixed(4));
+      $("#pause").val(Number(params.trunkPause).toFixed(4));
 
       console.log("set quintic parameters");
     }
@@ -1379,48 +1366,47 @@
 
     function setKickingValue(params) {
   
-      $("#Torso_X").val(params.Torso_X);
-      $("#Torso_Y").val(params.Torso_Y);
-      $("#Torso_Z").val(params.Torso_Z);
-      $("#L_Shift_X").val(params.L_Shift_X);
-      $("#L_Shift_Y").val(params.L_Shift_Y);
-      $("#L_Shift_Z").val(params.L_Shift_Z);
-      $("#R_Shift_X").val(params.R_Shift_X);
-      $("#R_Shift_Y").val(params.R_Shift_Y);
-      $("#R_Shift_Z").val(params.R_Shift_Z);
-      $("#L_Lift_X").val(params.L_Lift_X);
-      $("#L_Lift_Y").val(params.L_Lift_Y);
-      $("#L_Lift_Z").val(params.L_Lift_Z);
-      $("#R_Lift_X").val(params.R_Lift_X);
-      $("#R_Lift_Y").val(params.R_Lift_Y);
-      $("#R_Lift_Z").val(params.R_Lift_Z);
-      $("#L_Swing_X").val(params.L_Swing_X);
-      $("#L_Swing_Y").val(params.L_Swing_Y);
-      $("#L_Swing_Z").val(params.L_Swing_Z);
-      $("#R_Swing_X").val(params.R_Swing_X);
-      $("#R_Swing_Y").val(params.R_Swing_Y);
-      $("#R_Swing_Z").val(params.R_Swing_Z);
-      $("#L_Retract_X").val(params.L_Retract_X);
-      $("#L_Retract_Y").val(params.L_Retract_Y);
-      $("#L_Retract_Z").val(params.L_Retract_Z);
-      $("#R_Retract_X").val(params.R_Retract_X);
-      $("#R_Retract_Y").val(params.R_Retract_Y);
-      $("#R_Retract_Z").val(params.R_Retract_Z);
-      $("#Torso_Pitch").val(params.Torso_Pitch);
-      $("#Shift_Roll").val(params.Shift_Roll);
-      $("#Lift_Roll").val(params.Lift_Roll);
-      $("#Lift_Pitch").val(params.Lift_Pitch);
-      $("#Swing_Roll").val(params.Swing_Roll);
-      $("#Swing_Pitch").val(params.Swing_Pitch);
-      $("#Retract_Roll").val(params.Retract_Roll);
-      $("#Retract_Pitch").val(params.Retract_Pitch);
-      $("#SHIFT_TIME").val(params.SHIFT_TIME);
-      $("#LIFT_TIME").val(params.LIFT_TIME);
-      $("#SWING_TIME").val(params.SWING_TIME);
-      $("#RETRACT_TIME").val(params.RETRACT_TIME);
-      $("#LANDING_TIME").val(params.LANDING_TIME);
-      $("#FINISHED_TIME").val(params.FINISHED_TIME);
-
+      $("#Torso_X").val(Number(params.Torso_X).toFixed(4));
+      $("#Torso_Y").val(Number(params.Torso_Y).toFixed(4));
+      $("#Torso_Z").val(Number(params.Torso_Z).toFixed(4));
+      $("#L_Shift_X").val(Number(params.L_Shift_X).toFixed(4));
+      $("#L_Shift_Y").val(Number(params.L_Shift_Y).toFixed(4));
+      $("#L_Shift_Z").val(Number(params.L_Shift_Z).toFixed(4));
+      $("#R_Shift_X").val(Number(params.R_Shift_X).toFixed(4));
+      $("#R_Shift_Y").val(Number(params.R_Shift_Y).toFixed(4));
+      $("#R_Shift_Z").val(Number(params.R_Shift_Z).toFixed(4));
+      $("#L_Lift_X").val(Number(params.L_Lift_X).toFixed(4));
+      $("#L_Lift_Y").val(Number(params.L_Lift_Y).toFixed(4));
+      $("#L_Lift_Z").val(Number(params.L_Lift_Z).toFixed(4));
+      $("#R_Lift_X").val(Number(params.R_Lift_X).toFixed(4));
+      $("#R_Lift_Y").val(Number(params.R_Lift_Y).toFixed(4));
+      $("#R_Lift_Z").val(Number(params.R_Lift_Z).toFixed(4));
+      $("#L_Swing_X").val(Number(params.L_Swing_X).toFixed(4));
+      $("#L_Swing_Y").val(Number(params.L_Swing_Y).toFixed(4));
+      $("#L_Swing_Z").val(Number(params.L_Swing_Z).toFixed(4));
+      $("#R_Swing_X").val(Number(params.R_Swing_X).toFixed(4));
+      $("#R_Swing_Y").val(Number(params.R_Swing_Y).toFixed(4));
+      $("#R_Swing_Z").val(Number(params.R_Swing_Z).toFixed(4));
+      $("#L_Retract_X").val(Number(params.L_Retract_X).toFixed(4));
+      $("#L_Retract_Y").val(Number(params.L_Retract_Y).toFixed(4));
+      $("#L_Retract_Z").val(Number(params.L_Retract_Z).toFixed(4));
+      $("#R_Retract_X").val(Number(params.R_Retract_X).toFixed(4));
+      $("#R_Retract_Y").val(Number(params.R_Retract_Y).toFixed(4));
+      $("#R_Retract_Z").val(Number(params.R_Retract_Z).toFixed(4));
+      $("#Torso_Pitch").val(Number(params.Torso_Pitch).toFixed(4));
+      $("#Shift_Roll").val(Number(params.Shift_Roll).toFixed(4));
+      $("#Lift_Roll").val(Number(params.Lift_Roll).toFixed(4));
+      $("#Lift_Pitch").val(Number(params.Lift_Pitch).toFixed(4));
+      $("#Swing_Roll").val(Number(params.Swing_Roll).toFixed(4));
+      $("#Swing_Pitch").val(Number(params.Swing_Pitch).toFixed(4));
+      $("#Retract_Roll").val(Number(params.Retract_Roll).toFixed(4));
+      $("#Retract_Pitch").val(Number(params.Retract_Pitch).toFixed(4));
+      $("#SHIFT_TIME").val(Number(params.SHIFT_TIME).toFixed(4));
+      $("#LIFT_TIME").val(Number(params.LIFT_TIME).toFixed(4));
+      $("#SWING_TIME").val(Number(params.SWING_TIME).toFixed(4));
+      $("#RETRACT_TIME").val(Number(params.RETRACT_TIME).toFixed(4));
+      $("#LANDING_TIME").val(Number(params.LANDING_TIME).toFixed(4));
+      $("#FINISHED_TIME").val(Number(params.FINISHED_TIME).toFixed(4));
 
 
 
@@ -1428,7 +1414,7 @@
 
     get_kicking_param_client.callService(request, function (resp) {
       kicking_params = resp.parameters;
-      
+      console.log(kicking_params)
       setKickingValue(kicking_params);
     })
 
@@ -1460,60 +1446,60 @@
 
 
     function applyKickingParams() {
-         kicking_params.Torso_X     = Number($("#Torso_X").val());
-         kicking_params.Torso_Y     = Number($("#Torso_Y").val());
-         kicking_params.Torso_Z     = Number($("#Torso_Z").val());
+         kicking_params.Torso_X     = Number(Number($("#Torso_X").val()).toFixed(4));
+         kicking_params.Torso_Y     = Number(Number($("#Torso_Y").val()).toFixed(4));
+         kicking_params.Torso_Z     = Number(Number($("#Torso_Z").val()).toFixed(4));
    
-         kicking_params.L_Shift_X   = Number($("#L_Shift_X").val());
-         kicking_params.L_Shift_Y   = Number($("#L_Shift_Y").val());
-         kicking_params.L_Shift_Z   = Number($("#L_Shift_Z").val());
-         kicking_params.R_Shift_X   = Number($("#R_Shift_X").val());
-         kicking_params.R_Shift_Y   = Number($("#R_Shift_Y").val());
-         kicking_params.R_Shift_Z   = Number($("#R_Shift_Z").val());
+         kicking_params.L_Shift_X   = Number(Number($("#L_Shift_X").val()).toFixed(4));
+         kicking_params.L_Shift_Y   = Number(Number($("#L_Shift_Y").val()).toFixed(4));
+         kicking_params.L_Shift_Z   = Number(Number($("#L_Shift_Z").val()).toFixed(4));
+         kicking_params.R_Shift_X   = Number(Number($("#R_Shift_X").val()).toFixed(4));
+         kicking_params.R_Shift_Y   = Number(Number($("#R_Shift_Y").val()).toFixed(4));
+         kicking_params.R_Shift_Z   = Number(Number($("#R_Shift_Z").val()).toFixed(4));
 
-         kicking_params.L_Lift_X    = Number($("#L_Lift_X").val()); 
-         kicking_params.L_Lift_Y    = Number($("#L_Lift_Y").val()); 
-         kicking_params.L_Lift_Z    = Number($("#L_Lift_Z").val()); 
-         kicking_params.R_Lift_X    = Number($("#R_Lift_X").val()); 
-         kicking_params.R_Lift_Y    = Number($("#R_Lift_Y").val()); 
-         kicking_params.R_Lift_Z    = Number($("#R_Lift_Z").val()); 
+         kicking_params.L_Lift_X    = Number(Number($("#L_Lift_X").val()).toFixed(4)); 
+         kicking_params.L_Lift_Y    = Number(Number($("#L_Lift_Y").val()).toFixed(4)); 
+         kicking_params.L_Lift_Z    = Number(Number($("#L_Lift_Z").val()).toFixed(4)); 
+         kicking_params.R_Lift_X    = Number(Number($("#R_Lift_X").val()).toFixed(4)); 
+         kicking_params.R_Lift_Y    = Number(Number($("#R_Lift_Y").val()).toFixed(4)); 
+         kicking_params.R_Lift_Z    = Number(Number($("#R_Lift_Z").val()).toFixed(4)); 
 
-         kicking_params.L_Swing_X    = Number($("#L_Swing_X").val()); 
-         kicking_params.L_Swing_Y    = Number($("#L_Swing_Y").val()); 
-         kicking_params.L_Swing_Z    = Number($("#L_Swing_Z").val()); 
-         kicking_params.R_Swing_X    = Number($("#R_Swing_X").val()); 
-         kicking_params.R_Swing_Y    = Number($("#R_Swing_Y").val()); 
-         kicking_params.R_Swing_Z    = Number($("#R_Swing_Z").val()); 
+         kicking_params.L_Swing_X    = Number(Number($("#L_Swing_X").val()).toFixed(4)); 
+         kicking_params.L_Swing_Y    = Number(Number($("#L_Swing_Y").val()).toFixed(4)); 
+         kicking_params.L_Swing_Z    = Number(Number($("#L_Swing_Z").val()).toFixed(4)); 
+         kicking_params.R_Swing_X    = Number(Number($("#R_Swing_X").val()).toFixed(4)); 
+         kicking_params.R_Swing_Y    = Number(Number($("#R_Swing_Y").val()).toFixed(4)); 
+         kicking_params.R_Swing_Z    = Number(Number($("#R_Swing_Z").val()).toFixed(4)); 
 
-         kicking_params.L_Retract_X    = Number($("#L_Retract_X").val());
-         kicking_params.L_Retract_Y    = Number($("#L_Retract_Y").val());
-         kicking_params.L_Retract_Z    = Number($("#L_Retract_Z").val());
-         kicking_params.R_Retract_X    = Number($("#R_Retract_X").val());
-         kicking_params.R_Retract_Y    = Number($("#R_Retract_Y").val());
-         kicking_params.R_Retract_Z    = Number($("#R_Retract_Z").val());
+         kicking_params.L_Retract_X    = Number(Number($("#L_Retract_X").val()).toFixed(4));
+         kicking_params.L_Retract_Y    = Number(Number($("#L_Retract_Y").val()).toFixed(4));
+         kicking_params.L_Retract_Z    = Number(Number($("#L_Retract_Z").val()).toFixed(4));
+         kicking_params.R_Retract_X    = Number(Number($("#R_Retract_X").val()).toFixed(4));
+         kicking_params.R_Retract_Y    = Number(Number($("#R_Retract_Y").val()).toFixed(4));
+         kicking_params.R_Retract_Z    = Number(Number($("#R_Retract_Z").val()).toFixed(4));
 
-         kicking_params.Torso_Pitch    = Number($("Torso_Pitch").val());
-         kicking_params.Shift_Roll    = Number($("Shift_Roll").val());
-         kicking_params.Lift_Roll    = Number($("Lift_Roll").val());
-         kicking_params.Lift_Pitch    = Number($("Lift_Pitch").val());
-         kicking_params.Swing_Roll    = Number($("Swing_Roll").val());
-         kicking_params.Swing_Pitch    = Number($("Swing_Pitch").val());
+         kicking_params.Torso_Pitch    = Number(Number($("#Torso_Pitch").val()).toFixed(4));
+         kicking_params.Shift_Roll    = Number(Number($("#Shift_Roll").val()).toFixed(4));
+         kicking_params.Lift_Roll    = Number(Number($("#Lift_Roll").val()).toFixed(4));
+         kicking_params.Lift_Pitch    = Number(Number($("#Lift_Pitch").val()).toFixed(4));
+         kicking_params.Swing_Roll    = Number(Number($("#Swing_Roll").val()).toFixed(4));
+         kicking_params.Swing_Pitch    = Number(Number($("#Swing_Pitch").val()).toFixed(4));
 
-         kicking_params.Retract_Roll    = Number($("#Retract_Roll").val());
-         kicking_params.Retract_Pitch    = Number($("#Retract_Pitch").val());
+         kicking_params.Retract_Roll    = Number(Number($("#Retract_Roll").val()).toFixed(4));
+         kicking_params.Retract_Pitch    = Number(Number($("#Retract_Pitch").val()).toFixed(4));
 
-         kicking_params.SHIFT_TIME    = Number($("#SHIFT_TIME").val());
-         kicking_params.LIFT_TIME    = Number($("#LIFT_TIME").val());
-         kicking_params.SWING_TIME    = Number($("#SWING_TIME").val());
-         kicking_params.RETRACT_TIME    = Number($("#RETRACT_TIME").val());
-         kicking_params.LANDING_TIME    = Number($("#LANDING_TIME").val());
-         kicking_params.FINISHED_TIME    = Number($("#FINISHED_TIME").val());
+         kicking_params.SHIFT_TIME    = Number(Number($("#SHIFT_TIME").val()).toFixed(4));
+         kicking_params.LIFT_TIME    = Number(Number($("#LIFT_TIME").val()).toFixed(4));
+         kicking_params.SWING_TIME    = Number(Number($("#SWING_TIME").val()).toFixed(4));
+         kicking_params.RETRACT_TIME    = Number(Number($("#RETRACT_TIME").val()).toFixed(4));
+         kicking_params.LANDING_TIME    = Number(Number($("#LANDING_TIME").val()).toFixed(4));
+         kicking_params.FINISHED_TIME    = Number(Number($("#FINISHED_TIME").val()).toFixed(4));
 
 
       let kicking_params_msg = new ROSLIB.Message(kicking_params)
 
       set_kicking_param_pub.publish(kicking_params_msg);
-
+      console.log(kicking_params_msg)
     }
 
     function saveKickingParams() {
@@ -1522,6 +1508,7 @@
       })
 
       kicking_command_pub.publish(save_kicking_msg);
+      console.log("saving kicking params")
 
     }
 
